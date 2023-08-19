@@ -1,3 +1,3 @@
-module github.com/q10357/design-patterns-go/solid/ocp
+module github.com/q10357/solid-principles-go/solid
 
 go 1.20
