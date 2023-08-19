@@ -18,6 +18,7 @@ type Filter struct {
 	//
 }
 
+//GOOD PRACTICE
 type Specification interface {
 	IsSatisfied(p *Product) bool
 }
@@ -38,6 +39,14 @@ func (s SizeSpecification) IsSatisfied(p *Product) bool {
 	return p.size == s.Size
 }
 
+type AndSpecification struct {
+	first, second Specification
+}
+
+func (a AndSpecification) isSatisfied(p *Product) bool {
+	return a.first.IsSatisfied(p) && a.second.IsSatisfied(p)
+}
+
 type BetterFilter struct{}
 
 func (f *BetterFilter) Filter(
@@ -51,6 +60,7 @@ func (f *BetterFilter) Filter(
 	return result
 }
 
+//Bad practice
 func (f *Filter) FilterByColor(
 	products []Product, color Color) []*Product {
 	result := make([]*Product, 0)
@@ -63,6 +73,7 @@ func (f *Filter) FilterByColor(
 	return result
 }
 
+//Bad practice
 func (f *Filter) FilterBySize(
 	products []Product, size Size) []*Product {
 	result := make([]*Product, 0)
@@ -75,6 +86,7 @@ func (f *Filter) FilterBySize(
 	return result
 }
 
+//Bad practice
 func (f *Filter) FilterBySizeAndColor(
 	products []Product, size Size, color Color) []*Product {
 	result := make([]*Product, 0)
