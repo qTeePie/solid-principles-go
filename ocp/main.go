@@ -38,4 +38,15 @@ func main() {
 	for _, v := range f.FilterByColor(products, data.GetGreenColor()) {
 		fmt.Printf(" - %s is green\n", v.GetName())
 	}
+
+	fmt.Printf("Green Products (new):\n")
+	greenSpec := data.ColorSpecification{}
+	greenSpec.Color = data.GetGreenColor()
+
+	bf := data.BetterFilter{}
+
+	for _, v := range bf.Filter(products, greenSpec) {
+		fmt.Printf(" - %s is green\n", v.GetName())
+	}
+
 }

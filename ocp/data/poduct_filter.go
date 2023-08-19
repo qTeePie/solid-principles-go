@@ -18,6 +18,39 @@ type Filter struct {
 	//
 }
 
+type Specification interface {
+	IsSatisfied(p *Product) bool
+}
+
+type ColorSpecification struct {
+	Color Color
+}
+
+func (c ColorSpecification) IsSatisfied(p *Product) bool {
+	return p.color == c.Color
+}
+
+type SizeSpecification struct {
+	Size Size
+}
+
+func (s SizeSpecification) IsSatisfied(p *Product) bool {
+	return p.size == s.Size
+}
+
+type BetterFilter struct{}
+
+func (f *BetterFilter) Filter(
+	products []Product, spec Specification) []*Product {
+	result := make([]*Product, 0)
+	for i, v := range products {
+		if spec.IsSatisfied(&v) {
+			result = append(result, &products[i])
+		}
+	}
+	return result
+}
+
 func (f *Filter) FilterByColor(
 	products []Product, color Color) []*Product {
 	result := make([]*Product, 0)
