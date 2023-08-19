@@ -17,7 +17,7 @@ large (2)
 import (
 	"fmt"
 
-	"github.com/q10357/solid-principles-go/solid/data"
+	"github.com/q10357/solid-principles-go/solid/ocp/data"
 )
 
 func main() {
