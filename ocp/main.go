@@ -49,11 +49,13 @@ func main() {
 		fmt.Printf(" - %s is green\n", v.GetName())
 	}
 
+	fmt.Printf("Small red Products (new):\n")
+
 	srSpec := data.SizeSpecification{}
 	srSpec.Size = data.GetSmallSize()
 	redSpec := data.ColorSpecification{}
 	redSpec.Color = data.GetRedColor()
-	fmt.Printf("Small red Products (new):\n")
+
 	for _, v := range bf.Filter(products, srSpec) {
 		fmt.Printf(" - %s is small and red\n", v.GetName())
 	}

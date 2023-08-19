@@ -14,10 +14,6 @@ medium (1)
 large (2)
 */
 
-type Filter struct {
-	//
-}
-
 //GOOD PRACTICE
 type Specification interface {
 	IsSatisfied(p *Product) bool
@@ -74,6 +70,10 @@ func (f *Filter) FilterByColor(
 }
 
 //Bad practice
+type Filter struct {
+	//
+}
+
 func (f *Filter) FilterBySize(
 	products []Product, size Size) []*Product {
 	result := make([]*Product, 0)
